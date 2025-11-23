@@ -1,26 +1,37 @@
+// custom functions
 #let in-outline = state("in-outline", false)
 
 #let caption(short, details) = context {
   if in-outline.get() { short } else { [#strong(short). #details] }
 }
 
-#let todo(ss) = text(weight: "bold", fill: red, [TODO: ]+ ss)
+#let todo(word) = text(weight: "bold", fill: red, [TODO: ]+ word)
 
 
 // ===========================================================
-#let template(title-page: {},
+#let template(
+title-page: {},
 declaration: {},
-acknowledgements: {}, abstract: {}, abbreviations: {}, body) = context{[
+abstract: {}, 
+acknowledgements: {},
+abbreviations: {},
+results: {},
+discussion: {},
+bibliography: {},
+appendix: {},
+
+body
+              )= context{[
 
 #import "@preview/hydra:0.6.2": hydra
 #import "@preview/subpar:0.2.2": *
 
-//----page formatting============================
+//======page formatting============================
 #set page(margin: (x: 2.5cm, y: 2.5cm),
           paper: "a4"
           )
 
-// blocksatz
+// justification
 #set par(justify: true, linebreaks: "optimized") 
 
 #set heading(numbering: "1.1.1.a.")
@@ -36,34 +47,36 @@ acknowledgements: {}, abstract: {}, abbreviations: {}, body) = context{[
 //figure caption left-aligned
 #show figure.caption: set align(start)
 
-//figure supplement bold, text 10pt
+//figure supplement bold, caption text 10pt
 #show figure.caption: it => context box(
     inset: (left: 1.4em, right: 1.4em),
     align(left)[#text(size: 10pt)[
     *#it.supplement~#it.counter.display()#it.separator*#it.body
-              ]
-    ] 
+                                  ]
+                ] 
 )
+
 #set image(fit: "contain", scaling: "smooth")
 
 #show figure.where(kind: image): set text(size: 10pt)
 
-
 //-------------------------table design-----------------------
-#show table.cell.where(y: 0): strong //first table line *bold*
+#show table.cell.where(y: 0): strong //first table line bold
+
 #set table(stroke: (x, y) => (
   left: if x > 0 { 0.7pt }, 
   top: if y == 0 {1.0pt},
   bottom : if y == 0 {0.7pt}),
   align: (x, y) => center + horizon
   )
+
 #set table.hline(stroke: 0.7pt)
+
 //caption above table
 #show figure.where(kind: table): set figure.caption(position: top)
+//------------------------------------------------------------
 
-// -------------------------------------------------------------
-
-// footnotes definieren
+// define footnotes
 #set footnote.entry(gap: 0.6em, indent: 0em)
 
 // references bold and blue
@@ -71,7 +84,7 @@ acknowledgements: {}, abstract: {}, abbreviations: {}, body) = context{[
 #show link: set text(hyphenate: false)
 #show cite: it => strong(text(fill: blue, it))
 
-// https://forum.typst.app/t/how-can-i-configure-linking-and-color-in-my-bibliography/1672/4
+//bibliography DOIs blue and bold, two-columns layout
 #show bibliography: it => {
   show link: set text(blue)
   show link: strong
@@ -83,13 +96,15 @@ acknowledgements: {}, abstract: {}, abbreviations: {}, body) = context{[
 
 #set pagebreak(weak: true)
 
-//---title page (s) ------------------------------------------------
+//========================chapter design=======================
+
+//---title page------------------------------------------------
 #title-page
 #pagebreak()
 #declaration
 
-#counter(page).update(1) //resettet counter sodass numerierung erst ab abschnitt "abstract" anfängt
-
+//resetting counter so numbering starts at Abstract
+#counter(page).update(1) 
 
 //----abstract----------------------------------------
 
@@ -105,11 +120,8 @@ acknowledgements: {}, abstract: {}, abbreviations: {}, body) = context{[
 ]
 
 //----outlines----------------------------------------
-// https://typst.app/docs/reference/model/outline/
-//https://github.com/roland-KA/basic-report-typst-template/blob/main/lib.typ
-//https://github.com/fuchs-fabian/typst-template-aio-studi-and-thesis/blob/main/src/lib.typ
-
 //----Table of Contents
+
 //heading level 1 bold
 #page(numbering: "I")[
 #show outline.entry.where(level: 1): it => {
@@ -124,9 +136,7 @@ acknowledgements: {}, abstract: {}, abbreviations: {}, body) = context{[
 ]
 #pagebreak()
 
-// ONLY SHOW SHORT CAPTION IN OUTLINE
-// https://forum.typst.app/t/how-do-i-customize-outline-entries-it-inner-it-body/3591/7
-// https://forum.typst.app/t/how-to-have-different-text-shown-in-figure-caption-and-in-outline/2349/3
+// ----ONLY SHOW SHORT CAPTION IN OUTLINE, custom function
 
 #show outline: it => {
   in-outline.update(true)
@@ -166,7 +176,7 @@ acknowledgements: {}, abstract: {}, abbreviations: {}, body) = context{[
 
 #show link: it => strong(text(blue,it))
 
-//================MAIN=================================
+//================Results, discussion, appendix=================================
 #set page(header: 
           [
           #set text(size: 12pt)
@@ -176,6 +186,14 @@ acknowledgements: {}, abstract: {}, abbreviations: {}, body) = context{[
           #context{strong(counter(page).display())}
                   #v(-0.9em) #line(length: 100%)]
                   )
+
+#results
+
+#discussion
+
+#bibliography
+
+#appendix
 
 #body
 
