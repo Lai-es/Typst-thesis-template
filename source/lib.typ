@@ -1,4 +1,4 @@
-// custom functions
+//-------------------custom functions-------------------
 #let in-outline = state("in-outline", false)
 
 #let caption(short, details) = context {
@@ -7,6 +7,24 @@
 
 #let todo(word) = text(weight: "bold", fill: red, [TODO: ]+ word)
 
+#let subfigure(..args) = subpar.grid(
+  align: top+start,
+  numbering-sub: "A",
+  numbering-sub-ref: (..nums) => numbering("1A", ..nums),
+  show-sub-caption: (num, it) => {
+    set text(size: 1.5em) //big numeration
+    // subcaption numbering
+    text(weight: "bold", num)
+    // it.separator
+    // subcaption body
+    it.body
+  },
+  show-sub: it => {
+    set figure.caption(position: top)
+    it
+  },
+ ..args
+)
 
 // ===========================================================
 #let template(
