@@ -23,7 +23,7 @@ The test script performs the following checks:
 
 ## Requirements
 
-- **Typst 0.13.0 or later** - The Typst compiler must be installed on your system
+- **Typst 0.13.1 or later** - The Typst compiler must be installed on your system
 - **Internet connectivity** - Required for first-time package downloads
 
 ### Installing Typst
@@ -36,6 +36,8 @@ curl -fsSL https://github.com/typst/typst/releases/download/v0.13.0/typst-x86_64
 tar -xf typst.tar.xz
 sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
 ```
+
+Note: While version 0.13.0 is shown in the example above, version 0.13.1 or later is recommended for full compatibility.
 
 ## External Dependencies
 
