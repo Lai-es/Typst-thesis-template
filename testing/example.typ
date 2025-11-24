@@ -1,3 +1,6 @@
+// This example imports from source/lib.typ (package entrypoint)
+// because it's testing from the repository root.
+// When using the standalone template, import from "lib.typ" instead.
 #import "source/lib.typ": *
 
 // Import chapter functions
