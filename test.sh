@@ -180,8 +180,7 @@ else
     COMPILE_ERROR=$?
     echo -e "${YELLOW}⚠ Compilation failed - checking if it's due to network issues...${NC}"
     
-    if grep -q "Network unreachable\|Connection Failed\|failed to download" test_document.typ 2>/dev/null || \
-       typst compile test_document.typ test_output.pdf 2>&1 | grep -q "Network unreachable\|Connection Failed\|failed to download"; then
+    if typst compile test_document.typ test_output.pdf 2>&1 | grep -q "Network unreachable\|Connection Failed\|failed to download"; then
         echo -e "\n${YELLOW}=========================================${NC}"
         echo -e "${YELLOW}Network connectivity required!${NC}"
         echo -e "${YELLOW}=========================================${NC}"
@@ -207,4 +206,3 @@ fi
 
 echo "To use this template, run:"
 echo "  typst compile your_thesis.typ output.pdf"
-

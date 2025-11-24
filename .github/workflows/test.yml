@@ -7,6 +7,9 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+env:
+  TYPST_VERSION: "0.13.0"
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -17,7 +20,7 @@ jobs:
       
     - name: Install Typst
       run: |
-        curl -fsSL https://github.com/typst/typst/releases/download/v0.13.0/typst-x86_64-unknown-linux-musl.tar.xz -o typst.tar.xz
+        curl -fsSL https://github.com/typst/typst/releases/download/v${{ env.TYPST_VERSION }}/typst-x86_64-unknown-linux-musl.tar.xz -o typst.tar.xz
         tar -xf typst.tar.xz
         sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
         typst --version
