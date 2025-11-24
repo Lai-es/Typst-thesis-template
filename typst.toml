@@ -11,3 +11,8 @@ repository = "https://github.com/Lai-es/typst-thesis-template-ut"
 keywords = ["Bachelorarbeit", "Masterarbeit", "aio", "thesis"]
 categories = ["thesis"]
 compiler = "0.13.1"
+
+[template]
+path = "template"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"
