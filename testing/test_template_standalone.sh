@@ -13,9 +13,8 @@ echo "Testing Template Standalone Usage"
 echo "========================================="
 
 # Create a temp directory to simulate "Start from template"
-TEST_DIR="/tmp/typst-template-test-$$"
 echo -e "\n${YELLOW}1. Creating isolated test environment...${NC}"
-mkdir -p "$TEST_DIR"
+TEST_DIR=$(mktemp -d -t typst-template-test-XXXXXXXXXX)
 
 # Copy only template directory contents (what users get)
 echo -e "${YELLOW}2. Copying template files (simulating 'Start from template')...${NC}"

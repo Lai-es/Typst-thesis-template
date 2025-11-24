@@ -107,7 +107,7 @@ appendix: {}
 #show bibliography: it => {
   show link: set text(blue)
   show link: strong
-  set text(size: 10pt, costs: (hyphenation: 150%))
+  set text(size: 10pt, cost: (hyphenation: 150%))
   columns(it)
 }
 

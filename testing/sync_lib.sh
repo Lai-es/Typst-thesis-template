@@ -32,9 +32,11 @@ if diff -q "$SOURCE_LIB" "$TEMPLATE_LIB" > /dev/null; then
 fi
 
 # Files are different, show diff and ask which to use as source
-echo -e "${YELLOW}Files differ! Here's the difference:${NC}"
+echo -e "${YELLOW}Files differ! Here's the difference (first 50 lines):${NC}"
 echo ""
 diff -u "$SOURCE_LIB" "$TEMPLATE_LIB" | head -50
+echo ""
+echo -e "${YELLOW}(Use 'diff -u source/lib.typ template/lib.typ' to see full difference)${NC}"
 echo ""
 
 # Determine which was modified more recently

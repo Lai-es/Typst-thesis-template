@@ -57,6 +57,14 @@ These are auto-downloaded by Typst on first compilation.
 ### ⚠️ Network Requirement
 Compilation requires internet connectivity to download external packages on first run. This is expected and normal for Typst packages.
 
+**If Network Access Is Unavailable:**
+1. Structure validation tests will still pass (they don't require compilation)
+2. The template structure is confirmed correct by path validation tests
+3. For full compilation testing, you'll need to:
+   - Test on a machine with internet access, OR
+   - Pre-download packages in Typst's cache directory, OR
+   - Use a CI/CD environment with network access (GitHub Actions workflow included)
+
 ## How to Test Locally
 
 ### Quick Test (From Repository Root)
