@@ -161,7 +161,7 @@ You can also test individual custom functions:
 ### Caption Function
 
 ```typ
-#import "source/lib.typ": caption
+#import "template/lib.typ": caption
 
 #figure(
   rect(width: 50%, height: 50pt),
@@ -172,7 +172,7 @@ You can also test individual custom functions:
 ### TODO Function
 
 ```typ
-#import "source/lib.typ": todo
+#import "template/lib.typ": todo
 
 #todo[This is a TODO item]
 ```
@@ -180,7 +180,7 @@ You can also test individual custom functions:
 ### Subfigure Function
 
 ```typ
-#import "source/lib.typ": subfigure, caption
+#import "template/lib.typ": subfigure, caption
 
 #subfigure(
   columns: 2,
