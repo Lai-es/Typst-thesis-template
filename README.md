@@ -1,6 +1,6 @@
 # Typst thesis templates for bachelor and master thesis
 
-This template is designed to write final theses in the field of life sciences with a clean look, offering 1) the automatic generation of a two-column bibliography 2) automatic subfigure-numbering and 3) allows for the display of short captions for figures in the outline.
+This template is designed to write final theses in the field of life sciences with a clean look, offering 1) the automatic generation of a two-column bibliography 2) automatic subfigure-numbering and 3) allows for the display of short captions for figures in the outline. The biggest downside of this template yet is its pre-defined customization of text, tables, figures... which make this template less flexible.
 
 ## Disclaimer
 
@@ -71,12 +71,3 @@ caption: [caption describing the whole figure, including subfigures]
 ```
 
 Note that this does **not** allow for captioning of the subfigures directly, but instead requires a description in the total figure caption
-
-## Testing
-
-To verify that all dependencies work and the project is coherent, see [TESTING.md](TESTING.md) for detailed testing instructions.
-
-Quick test:
-```bash
-./test.sh
-```

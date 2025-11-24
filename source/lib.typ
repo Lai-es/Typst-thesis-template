@@ -38,12 +38,11 @@ abbreviations: {},
 results: {},
 discussion: {},
 bibliography: {},
-appendix: {},
-
-body
+appendix: {}
               )= context{[
 
 #import "@preview/hydra:0.6.2": hydra
+#import "@preview/subpar:0.2.2"
 
 //======page formatting============================
 #set page(margin: (x: 2.5cm, y: 2.5cm),
@@ -82,6 +81,7 @@ body
 //-------------------------table design-----------------------
 #show table.cell.where(y: 0): strong //first table line bold
 
+// dont show the outer (left, right and bottom) table strokes
 #set table(stroke: (x, y) => (
   left: if x > 0 { 0.7pt }, 
   top: if y == 0 {1.0pt},
@@ -212,8 +212,12 @@ body
 
 #bibliography
 
-#appendix
+//---------------change figure numbering to Figure S1...-------------------
+#set figure(numbering: (..ns) => numbering("S1", ..ns))
+#set figure(outlined: false)
+#counter(figure.where(kind: image)).update(0)
+//-------------------------------------------------------------------------
 
-#body
+#appendix
 
 ]}
