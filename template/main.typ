@@ -1,4 +1,4 @@
-#import "source/lib.typ": *
+#import "lib.typ": *
 
 #import "chapters/1 title-page.typ": title-page
 #import "chapters/2 declaration.typ": declaration
